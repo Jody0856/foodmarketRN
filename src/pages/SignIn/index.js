@@ -11,7 +11,7 @@ const SignIn = ({navigation}) => {
   const onSubmit = () => {
     console.log('Tesz');
     axios
-      .post('http://172.67.191.16/api/login', form)
+      .post('https://foodmarketrn.jodyproject.com/api/login', form)
       .then(res => {
         console.log('Success');
         console.log(res.json());

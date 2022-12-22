@@ -96,3 +96,13 @@ $ yarn add react-native-pager-view
 - How to debugging
   Install React Native Debugger
   In real device, shake it and choose debug and reload
+  in emulator, press ctrl+m and choose reload
+
+- if there are error Invariant Violation: Module AppRegistry is not a registered callable module
+
+```sh
+$ rm -rf node_modules
+$ npm i
+$ npm start --reset-cache
+$ yarn android
+```
