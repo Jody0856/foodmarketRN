@@ -106,3 +106,35 @@ $ npm i
 $ npm start --reset-cache
 $ yarn android
 ```
+
+- Installing Redux + Redux Thunk + react Redux
+
+```sh
+$ yarn add redux redux-thunk react-redux
+```
+
+### Note about Redux
+
+- Redux thunk is used as a middleware for api
+- store in folder redux is used to store all reducer
+- reducer is used to store state or value
+- to initialize store is by modifying App.js on root src, passing it as an argument in provider
+- redux is useful to set or get global state or value, so that it can used in any component or pages in react
+
+- Installing Redux Native Flash Message
+
+```sh
+$ yarn add react-native-flash-message
+```
+
+- Installing Redux Native Image Picker
+
+```sh
+$ yarn add react-native-image-picker
+```
+
+- check on https://github.com/react-native-image-picker/react-native-image-picker
+  to find the details dependency
+
+- don't forget to us simbiolink, when the command cannot be executed, don't forget to exclude the command in cpanel, just search php, options and then delete the command
+  php artisan storage:link

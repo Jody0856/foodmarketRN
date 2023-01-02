@@ -1,26 +1,21 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Header, TextInput, Button, Gap} from '../../components';
-import {useForm} from '../../utils';
+import {useForm, showMessage} from '../../utils';
 import axios from 'axios';
 const SignIn = ({navigation}) => {
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
   const [form, setForm] = useForm({email: '', password: ''});
-
   const onSubmit = () => {
-    console.log('Tesz');
     axios
       .post('https://foodmarketrn.jodyproject.com/api/login', form)
       .then(res => {
-        console.log('Success');
-        console.log(res.json());
+        showMessage('Sign in Success', 'success');
       })
       .catch(err => {
-        console.log('error');
-        console.log(err);
+        showMessage('Error: ' + err?.response?.data?.message);
       });
   };
+
   return (
     <View style={styles.page}>
       <Header title="Sign In" subtitle="Find your best ever meal" />
