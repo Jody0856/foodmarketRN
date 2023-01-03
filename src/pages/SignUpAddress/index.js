@@ -35,14 +35,12 @@ const SignUpAddress = ({navigation}) => {
               {
                 headers: {
                   Authorization: `${res.data.data.token_type} ${res.data.data.access_token}`,
-                  'Content-Type:': 'multipart/form-data',
+                  'Content-Type': 'multipart/form-data',
                 },
               },
             )
             .then(resUpload => console.log('Success Upload', resUpload))
-            .catch(err => {
-              showMessage('Upload photo tidak berhasil');
-            });
+            .catch(err => showMessage('Upload photo tidak berhasil'));
         }
         dispatch({type: 'SET_LOADING', value: false});
         showMessage('Register Success', 'success');

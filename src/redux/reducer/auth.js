@@ -35,7 +35,7 @@ export const photoReducer = (state = initPhoto, action) => {
       name: action.value.name,
     };
   }
-  if (action.tyoe === 'SET_UPLOAD_STATUS') {
+  if (action.type === 'SET_UPLOAD_STATUS') {
     return {
       ...state,
       isUploadPhoto: action.value,
