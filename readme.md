@@ -138,3 +138,11 @@ $ yarn add react-native-image-picker
 
 - don't forget to us simbiolink, when the command cannot be executed, don't forget to exclude the command in cpanel, just search php, options and then delete the command
   php artisan storage:link
+
+- action creator is can be used to simplify code, by combining with dispatch, and by combining with redux thunk, we can use it to store post function, and by passing it as an arrow function in an arrow function, it can work asynchronously, we can calling it by using dispatch, and the name of function as a parameter
+
+- Async Storage / Local Storage (for storing data on phone)
+
+```sh
+$ yarn add @react-native-async-storage/async-storage
+```

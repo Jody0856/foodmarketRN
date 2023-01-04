@@ -23,24 +23,39 @@ const SignUp = ({navigation}) => {
   const dispatch = useDispatch();
 
   const onSubmit = () => {
-    if (form.password === form.password_confirmation) {
+    if (validatePassword()) {
       dispatch({type: 'SET_REGISTER', value: form}); //calling reducer to change the values
       navigation.navigate('SignUpAddress');
-    } else {
-      showMessage(`Password doesn't match, please type again`);
     }
   };
 
+  const validatePassword = () => {
+    if (form.name === null || form.name === '') {
+      showMessage(`Name must be filled`);
+      return false;
+    } else if (form.email === null || form.email === '') {
+      showMessage(`Email must be filled`);
+      return false;
+    } else if (form.password === null || form.password === '') {
+      showMessage(`Password must be filled`);
+      return false;
+    } else if (form.password.length < 8) {
+      showMessage(`Password must be at least 8 characters`);
+      return false;
+    } else if (form.password != form.password_confirmation) {
+      showMessage(`Password confirmation doesn't match, please type again`);
+      return false;
+    }
+    return true;
+  };
   const addPhoto = () => {
     launchImageLibrary(
       {quality: 0.5, maxWidth: 200, maxHeight: 200},
       response => {
-        console.log('Response ', response);
         if (response.didCancel || response.error) {
           showMessage('Anda tidak memilih photo');
         } else {
           const responseData = response.assets[0];
-          console.log(responseData);
           const source = {uri: responseData.uri};
           const dataImage = {
             uri: responseData.uri,
@@ -59,7 +74,7 @@ const SignUp = ({navigation}) => {
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <View style={styles.page}>
-        <Header title="Register" subtitle="Register and Eat" onBack />
+        <Header title="Register" subtitle="Register and Eat" />
         <View style={styles.container}>
           <View style={styles.photo}>
             <TouchableOpacity onPress={addPhoto}>

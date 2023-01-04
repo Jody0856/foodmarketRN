@@ -1,19 +1,15 @@
 import {StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Header, TextInput, Button, Gap} from '../../components';
-import {useForm, showMessage} from '../../utils';
-import axios from 'axios';
+import {useForm} from '../../utils';
+import {useDispatch} from 'react-redux';
+import {signInAction, setLoading} from '../../redux/action';
 const SignIn = ({navigation}) => {
   const [form, setForm] = useForm({email: '', password: ''});
+  const dispatch = useDispatch();
+
   const onSubmit = () => {
-    axios
-      .post('https://foodmarketrn.jodyproject.com/api/login', form)
-      .then(res => {
-        showMessage('Sign in Success', 'success');
-      })
-      .catch(err => {
-        showMessage('Error: ' + err?.response?.data?.message);
-      });
+    dispatch(signInAction(form, navigation));
   };
 
   return (
@@ -41,7 +37,9 @@ const SignIn = ({navigation}) => {
           text="Create New Account"
           color="#8D92A3"
           textColor="white"
-          onPress={() => navigation.navigate('SignUp')}
+          onPress={() => {
+            navigation.navigate('SignUp');
+          }}
         />
       </View>
     </View>
@@ -53,7 +51,6 @@ export default SignIn;
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    //backgroundColor: 'white',
   },
   container: {
     backgroundColor: 'white',

@@ -1,10 +1,9 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 import {Header, TextInput, Button, Gap, Select} from '../../components';
-import {useForm, showMessage} from '../../utils';
+import {useForm} from '../../utils';
 import {useDispatch, useSelector} from 'react-redux';
-import axios from 'axios';
-
+import {setLoading, signUpAction} from '../../redux/action';
 const SignUpAddress = ({navigation}) => {
   const [form, setForm] = useForm({
     phoneNumber: '',
@@ -19,47 +18,18 @@ const SignUpAddress = ({navigation}) => {
       ...form,
       ...registerReducer,
     };
-    dispatch({type: 'SET_LOADING', value: true});
-    axios
-      .post('https://foodmarketrn.jodyproject.com/api/register', data)
-      .then(res => {
-        console.log('data success', res.data);
-        if (photoReducer.isUploadPhoto) {
-          const photoForUpload = new FormData();
-          photoForUpload.append('file', photoReducer);
-          console.log('photoForUpload', photoForUpload);
-          axios
-            .post(
-              'https://foodmarketrn.jodyproject.com/api/user/photo',
-              photoForUpload,
-              {
-                headers: {
-                  Authorization: `${res.data.data.token_type} ${res.data.data.access_token}`,
-                  'Content-Type': 'multipart/form-data',
-                },
-              },
-            )
-            .then(resUpload => console.log('Success Upload', resUpload))
-            .catch(err => showMessage('Upload photo tidak berhasil'));
-        }
-        dispatch({type: 'SET_LOADING', value: false});
-        showMessage('Register Success', 'success');
-        navigation.replace('SuccessSignUp');
-      })
-      .catch(err => {
-        dispatch({type: 'SET_LOADING', value: false});
-        let errors = err?.response?.data?.errors;
-        const errors_map = new Map(Object.entries(errors));
-        for (let value of errors_map.values()) {
-          showMessage(value[0]);
-        }
-      });
+    dispatch(setLoading(true));
+    dispatch(signUpAction(data, photoReducer, navigation));
   };
 
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <View style={styles.page}>
-        <Header title="Address" subtitle="Make sure it’s valid" onBack />
+        <Header
+          title="Address"
+          subtitle="Make sure it’s valid"
+          onBack={() => navigation.goBack()}
+        />
         <View style={styles.container}>
           <TextInput
             label="Phone No."
