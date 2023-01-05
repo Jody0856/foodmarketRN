@@ -1,9 +1,10 @@
 import {StyleSheet, Text, View, useWindowDimensions} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {ItemListFood} from '../../../components';
-import {FoodDummy1, FoodDummy2, FoodDummy3, FoodDummy4} from '../../../assets';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector, useDispatch} from 'react-redux';
+import {getFoodDataByTypes} from '../../../redux/action';
 const renderTabBar = props => (
   <TabBar
     {...props}
@@ -17,94 +18,82 @@ const renderTabBar = props => (
 );
 const NewTaste = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {newTaste} = useSelector(state => state.homeReducer);
+
+  useEffect(() => {
+    dispatch(getFoodDataByTypes('new_taste'));
+  }, []);
+
   return (
     <View style={styles.renderStyle}>
-      <ItemListFood
-        type="product"
-        name="Sop Bumil"
-        price="380.000"
-        rating={5}
-        image={FoodDummy1}
-        onPress={() => navigation.navigate('FoodDetail')}
-      />
-      <ItemListFood
-        type="product"
-        name="Sop Bumil"
-        price="380.000"
-        rating={5}
-        image={FoodDummy2}
-        onPress={() => navigation.navigate('FoodDetail')}
-      />
-      <ItemListFood
-        type="product"
-        name="Sop Bumil"
-        price="380.000"
-        rating={5}
-        image={FoodDummy3}
-        onPress={() => navigation.navigate('FoodDetail')}
-      />
+      {newTaste.map(item => {
+        return (
+          <ItemListFood
+            type="product"
+            key={item.id}
+            name={item.name}
+            price={item.price}
+            rating={item.rate}
+            image={{uri: item.picturePath}}
+            onPress={() => navigation.navigate('FoodDetail', item)}
+          />
+        );
+      })}
     </View>
   );
 };
 const Popular = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {popular} = useSelector(state => state.homeReducer);
+
+  useEffect(() => {
+    dispatch(getFoodDataByTypes('popular'));
+  }, []);
+
   return (
     <View style={styles.renderStyle}>
-      <ItemListFood
-        type="product"
-        name="Sop Bumil"
-        price="380.000"
-        rating={5}
-        image={FoodDummy3}
-        onPress={() => navigation.navigate('FoodDetail')}
-      />
-      <ItemListFood
-        type="product"
-        name="Sop Bumil"
-        price="380.000"
-        rating={5}
-        image={FoodDummy2}
-        onPress={() => navigation.navigate('FoodDetail')}
-      />
-      <ItemListFood
-        type="product"
-        name="Sop Bumil"
-        price="380.000"
-        rating={5}
-        image={FoodDummy3}
-        onPress={() => navigation.navigate('FoodDetail')}
-      />
+      {popular.map(item => {
+        return (
+          <ItemListFood
+            type="product"
+            key={item.id}
+            name={item.name}
+            price={item.price}
+            rating={item.rate}
+            image={{uri: item.picturePath}}
+            onPress={() => navigation.navigate('FoodDetail', item)}
+          />
+        );
+      })}
     </View>
   );
 };
 const Recommended = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {recommended} = useSelector(state => state.homeReducer);
+
+  useEffect(() => {
+    dispatch(getFoodDataByTypes('recommended'));
+  }, []);
+
   return (
     <View style={styles.renderStyle}>
-      <ItemListFood
-        type="product"
-        name="Sop Bumil"
-        price="380.000"
-        rating={5}
-        image={FoodDummy4}
-        onPress={() => navigation.navigate('FoodDetail')}
-      />
-      <ItemListFood
-        type="product"
-        name="Sop Bumil"
-        price="380.000"
-        rating={5}
-        image={FoodDummy2}
-        onPress={() => navigation.navigate('FoodDetail')}
-      />
-      <ItemListFood
-        type="product"
-        name="Sop Bumil"
-        price="380.000"
-        rating={5}
-        image={FoodDummy3}
-        onPress={() => navigation.navigate('FoodDetail')}
-      />
+      {recommended.map(item => {
+        return (
+          <ItemListFood
+            type="product"
+            key={item.id}
+            name={item.name}
+            price={item.price}
+            rating={item.rate}
+            image={{uri: item.picturePath}}
+            onPress={() => navigation.navigate('FoodDetail', item)}
+          />
+        );
+      })}
     </View>
   );
 };

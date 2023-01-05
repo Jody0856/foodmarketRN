@@ -1,5 +1,5 @@
 import {StyleSheet, View} from 'react-native';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Header, TextInput, Button, Gap} from '../../components';
 import {useForm} from '../../utils';
 import {useDispatch} from 'react-redux';

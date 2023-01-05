@@ -6,7 +6,7 @@ const HomeProfile = () => {
   const [photo, setPhoto] = useState(ProfileDummy);
   useEffect(() => {
     getData('userProfile').then(res => {
-      setPhoto({uri: res.profile_photo_url});
+      setPhoto({uri: `https://${res.profile_photo_url}`});
     });
   }, []);
   return (

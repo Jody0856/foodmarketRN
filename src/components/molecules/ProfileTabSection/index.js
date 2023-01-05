@@ -1,8 +1,7 @@
 import {StyleSheet, Text, View, useWindowDimensions} from 'react-native';
 import React from 'react';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
-import {ItemListFood, ItemListMenu} from '../../../components';
-import {FoodDummy1, FoodDummy2, FoodDummy3} from '../../../assets';
+import {ItemListMenu} from '../../../components';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const renderTabBar = props => (

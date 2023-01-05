@@ -1,9 +1,7 @@
 import axios from 'axios';
 import {showMessage, storeData} from '../../utils';
 import {setLoading} from '../action';
-const API_HOST = {
-  url: 'https://foodmarketrn.jodyproject.com/api',
-};
+import {API_HOST} from '../../config';
 export const signUpAction =
   (dataRegister, photoReducer, navigation) => dispatch => {
     axios

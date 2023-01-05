@@ -146,3 +146,9 @@ $ yarn add react-native-image-picker
 ```sh
 $ yarn add @react-native-async-storage/async-storage
 ```
+
+- React Number Format / for formating price data
+
+```sh
+$ yarn add react-number-format
+```
