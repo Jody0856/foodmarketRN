@@ -10,7 +10,7 @@ import {IcBackWhite} from '../../assets';
 import {Rating, Button, Counter, Number} from '../../components';
 import {getData} from '../../utils';
 const FoodDetail = ({navigation, route}) => {
-  const {name, picturePath, description, ingredients, price, rate} =
+  const {name, picturePath, description, ingredients, price, rate, id} =
     route.params; //get objet from parents
   const [totalItem, setTotalItem] = useState(1);
   const [userProfile, setUserProfile] = useState({});
@@ -31,16 +31,17 @@ const FoodDetail = ({navigation, route}) => {
 
     const data = {
       item: {
-        name: name,
-        price: price,
-        picturePath: picturePath,
+        id,
+        name,
+        price,
+        picturePath,
       },
       transactions: {
-        totalItem: totalItem,
-        totalPrice: totalPrice,
-        driver: driver,
-        tax: tax,
-        total: total,
+        totalItem,
+        totalPrice,
+        driver,
+        tax,
+        total,
       },
       userProfile,
     };
