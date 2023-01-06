@@ -159,3 +159,5 @@ $ yarn add react-number-format
 $ yarn add react-native-webview
 
 ```
+
+- Testing payment in here https://docs.midtrans.com/en/technical-reference/sandbox-test?id=bank-transfer
