@@ -6,11 +6,12 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Header, TextInput, Button, Gap} from '../../components';
 import {useSelector, useDispatch} from 'react-redux';
 import {useForm, showMessage} from '../../utils';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import axios from 'axios';
 const SignUp = ({navigation}) => {
   //const globalState = useSelector(state => state.globalReducer); //calling reducer
   const [form, setForm] = useForm({

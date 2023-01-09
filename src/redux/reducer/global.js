@@ -22,3 +22,16 @@ export const globalReducer = (state = initGlobalState, action) => {
 
   return state;
 };
+
+const initCity = {
+  city: [],
+};
+export const cityReducer = (state = initCity, action) => {
+  if (action.type === 'SET_CITY') {
+    return {
+      ...state,
+      city: action.value,
+    };
+  }
+  return state;
+};

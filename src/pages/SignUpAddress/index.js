@@ -1,18 +1,22 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Header, TextInput, Button, Gap, Select} from '../../components';
 import {useForm} from '../../utils';
 import {useDispatch, useSelector} from 'react-redux';
-import {setLoading, signUpAction} from '../../redux/action';
+import {setLoading, signUpAction, getCities} from '../../redux/action';
 const SignUpAddress = ({navigation}) => {
   const [form, setForm] = useForm({
     phoneNumber: '',
     address: '',
     houseNumber: '',
-    city: 'Batam',
+    city: '',
   });
   const dispatch = useDispatch();
   const {registerReducer, photoReducer} = useSelector(state => state);
+  useEffect(() => {
+    dispatch(getCities());
+  }, []);
+  const {city} = useSelector(state => state.cityReducer);
   const onSubmit = () => {
     const data = {
       ...form,
@@ -21,7 +25,6 @@ const SignUpAddress = ({navigation}) => {
     dispatch(setLoading(true));
     dispatch(signUpAction(data, photoReducer, navigation));
   };
-
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <View style={styles.page}>
@@ -56,6 +59,7 @@ const SignUpAddress = ({navigation}) => {
             label="City"
             value={form.city}
             onSelectChange={value => setForm('city', value)}
+            data={city}
           />
           <Gap height={24} />
           <Button text="Sign Up Now" onPress={onSubmit} />

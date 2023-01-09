@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 
-const Select = ({label, value, onSelectChange}) => {
+const Select = ({label, value, onSelectChange, data}) => {
   return (
     <View>
       <Text style={styles.label}>{label}</Text>
@@ -10,11 +10,16 @@ const Select = ({label, value, onSelectChange}) => {
         <Picker
           selectedValue={value}
           onValueChange={(itemValue, itemIndex) => onSelectChange(itemValue)}>
-          <Picker.Item label="Batam" value="Batam" style={styles.item} />
-          <Picker.Item label="Jakarta" value="Jakarta" style={styles.item} />
-          <Picker.Item label="Bandung" value="Bandung" style={styles.item} />
-          <Picker.Item label="Bali" value="Bali" style={styles.item} />
-          <Picker.Item label="Surabaya" value="Surabaya" style={styles.item} />
+          {data.map(city => {
+            return (
+              <Picker.Item
+                label={city.label}
+                value={city.value}
+                key={city.id}
+                style={styles.item}
+              />
+            );
+          })}
         </Picker>
       </View>
     </View>

@@ -11,7 +11,6 @@ export const getOrders = () => dispatch => {
         },
       })
       .then(res => {
-        console.log('get', res.data.data.data);
         dispatch({type: 'SET_ORDER', value: res.data.data.data});
       })
       .catch(err => {
