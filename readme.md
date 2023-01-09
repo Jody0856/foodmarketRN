@@ -54,7 +54,7 @@ $ yarn add react-native-screens react-native-safe-area-context
   ex:
 
 ```sh
-$ adb uninstall com.foodmarketrn
+$ adb uninstall  com.jodyproject.foodmarketrn
 ```
 
 - Installing react navigation stack
@@ -161,3 +161,16 @@ $ yarn add react-native-webview
 ```
 
 - Testing payment in here https://docs.midtrans.com/en/technical-reference/sandbox-test?id=bank-transfer
+
+- Generating icon for build in https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html#
+
+- Generate key store https://reactnative.dev/docs/signed-apk-android
+
+- Build apk
+
+```sh
+$ gradlew bundleRelease
+
+$ yarn android --variant=release //Installing in  emulator
+
+```

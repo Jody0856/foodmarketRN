@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
+
 const Select = ({label, value, onSelectChange}) => {
   return (
     <View>
@@ -9,11 +10,11 @@ const Select = ({label, value, onSelectChange}) => {
         <Picker
           selectedValue={value}
           onValueChange={(itemValue, itemIndex) => onSelectChange(itemValue)}>
-          <Picker.Item label="Batam" value="Batam" />
-          <Picker.Item label="Jakarta" value="Jakarta" />
-          <Picker.Item label="Bandung" value="Bandung" />
-          <Picker.Item label="Bali" value="Bali" />
-          <Picker.Item label="Surabaya" value="Surabaya" />
+          <Picker.Item label="Batam" value="Batam" style={styles.item} />
+          <Picker.Item label="Jakarta" value="Jakarta" style={styles.item} />
+          <Picker.Item label="Bandung" value="Bandung" style={styles.item} />
+          <Picker.Item label="Bali" value="Bali" style={styles.item} />
+          <Picker.Item label="Surabaya" value="Surabaya" style={styles.item} />
         </Picker>
       </View>
     </View>
@@ -33,6 +34,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 2,
     paddingVertical: 0,
+    //  / color: '#8D92A3',
     // borderStyle: 'solid',
+    backgroundColor: 'white',
+  },
+  item: {
+    color: 'black',
+    backgroundColor: 'white',
   },
 });
