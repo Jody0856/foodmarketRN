@@ -23,11 +23,10 @@ const SignUp = ({navigation}) => {
   const dispatch = useDispatch();
 
   const onSubmit = () => {
-    navigation.navigate('SignUpAddress');
-    // if (validatePassword()) {
-    //   dispatch({type: 'SET_REGISTER', value: form}); //calling reducer to change the values
-    //   navigation.navigate('SignUpAddress');
-    // }
+    if (validatePassword()) {
+      dispatch({type: 'SET_REGISTER', value: form}); //calling reducer to change the values
+      navigation.navigate('SignUpAddress');
+    }
   };
 
   const validatePassword = () => {
